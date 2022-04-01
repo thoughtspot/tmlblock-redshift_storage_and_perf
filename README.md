@@ -1,8 +1,8 @@
 #  TML Blocks - Redshift Storage & Performance
 
-Monitor Redshift cluster performance and team usuage on Thoughtspot. 
+Monitor Redshift cluster performance and team usage on Thoughtspot. 
 
-In every Redshift database there is a schema called pg_catalog that includes system tables that store storage and performance data from the entire data warehouse. ThoughtSpot has selected the tables most meaningful for analyzing storage and performance trends and made this data easily searchable via ThoughtSpot. There is always room for customization to any template, but the DDL, worksheets and pinboard content that comprise this SpotApp definitely will provide a solid starting point for anyone who wants to explore and analyze their Redshift Storage & Performance data.
+In every Redshift database, there is a schema called pg_catalog that includes system tables that store storage and performance data from the entire data warehouse. ThoughtSpot has selected the tables most meaningful for analyzing storage and performance trends and made this data easily searchable via ThoughtSpot. There is always room for customization to any template, but the DDL, worksheets and pinboard content that comprise this SpotApp definitely will provide a solid starting point for anyone who wants to explore and analyze their Redshift Storage & Performance data.
 
 # Artifacts 
 
@@ -80,7 +80,7 @@ Log into your ThoughtSpot instance and create an Embrace connection to Redshift.
 
 ## Thoughtspot Table Joins 
 
-To ensure successful import of the worksheet and pinboards, joins need to be added to the tables in ThoughtSpots. Because these are views in Redshift and the joins cannot be “inherited” directly from the data warehouse, the joins must be added manually in the interface.
+To ensure the successful import of the worksheet and pinboards, joins need to be added to the tables in ThoughtSpots. Because these are views in Redshift and the joins cannot be “inherited” directly from the data warehouse, the joins must be added manually in the interface.
 
 Please add the following joins to the tables. (IMPORTANT: You will only have to do this once).
 
