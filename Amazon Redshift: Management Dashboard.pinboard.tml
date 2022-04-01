@@ -1,0 +1,689 @@
+guid: 1fdfd111-55ba-406a-bda0-0c5a73d89828
+pinboard:
+  name: "Amazon Redshift: Management Dashboard"
+  description: Provides Overview of Redshift Cluster
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Alerts
+      tables:
+      - id: Alerts
+        name: Alerts
+      search_query: "[Alerts] by [Alert]"
+      answer_columns:
+      - name: Alerts
+      - name: Alert
+      table:
+        table_columns:
+        - column_id: Alert
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Alerts
+          headline_aggregation: SUM
+        ordered_column_ids:
+        - Alert
+        - Alerts
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"wrapTableHeader\": true}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: Alert
+        - column_id: Alerts
+        axis_configs:
+        - x:
+          - Alert
+          "y":
+          - Alerts
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {},\"showStackedLabels\": true,\"allLabels\": true},\"columnProperties\": [{\"columnId\": \"Alerts\",\"columnProperty\": {\"dataLabels\": true}}],\"axisProperties\": [{\"id\": \"306b77d5-b918-4d1a-b498-cf352bf6c5ee\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Alerts\"],\"isOpposite\": false}},{\"id\": \"41a71b10-ff24-43b7-b8e2-9f913f86cc40\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Alert\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Alerts\",\"color\": \"#747E8C\"},{\"serieName\": \"missing query planner statistics                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                \",\"color\": \"#06BF7F\"},{\"serieName\": \"nested loop join in the query plan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              \",\"color\": \"#FCC838\"},{\"serieName\": \"very selective query filter:ratio=rows(101)/rows_pre_user_filter(2240)=0.045089                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 \",\"color\": \"#48D1E0\"},{\"serieName\": \"very selective query filter:ratio=rows(6)/rows_pre_user_filter(2240)=0.002679                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   \",\"color\": \"#71A1F4\"},{\"serieName\": \"very selective query filter:ratio=rows(6)/rows_pre_user_filter(2624)=0.002287                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   \",\"color\": \"#2E75F0\"}]}"
+      display_mode: CHART_MODE
+  - id: Viz_2
+    answer:
+      name: Cluster Storage Utilization %
+      tables:
+      - id: Clusters
+        name: Clusters
+      search_query: "[Capacity (MB)] [Used (MB)] [Instance Type] [Daily Redshift Compute Cost] [Cluster Storage Utilization %]"
+      answer_columns:
+      - name: Total Daily Redshift Compute Cost
+      - name: Instance Type
+      - name: Total Capacity (MB)
+      - name: Total Used (MB)
+      - name: Cluster Storage Utilization %
+      table:
+        table_columns:
+        - column_id: Instance Type
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Total Capacity (MB)
+          headline_aggregation: SUM
+        - column_id: Total Used (MB)
+          headline_aggregation: SUM
+        - column_id: Total Daily Redshift Compute Cost
+          headline_aggregation: TABLE_AGGR
+        - column_id: Cluster Storage Utilization %
+          headline_aggregation: TABLE_AGGR
+        ordered_column_ids:
+        - Instance Type
+        - Total Capacity (MB)
+        - Total Used (MB)
+        - Total Daily Redshift Compute Cost
+        - Cluster Storage Utilization %
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Instance Type
+        - column_id: Total Capacity (MB)
+        - column_id: Total Used (MB)
+        - column_id: Total Daily Redshift Compute Cost
+        - column_id: Cluster Storage Utilization %
+        axis_configs:
+        - x:
+          - Instance Type
+          "y":
+          - Total Capacity (MB)
+          - Total Used (MB)
+          - Total Daily Redshift Compute Cost
+          - Cluster Storage Utilization %
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {}},\"axisProperties\": [{\"id\": \"22224083-8a75-4450-b004-49de51cc41ce\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Capacity (MB)\"],\"isOpposite\": false}},{\"id\": \"2627b673-8833-4f43-b4d6-353dec7aab9f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Used (MB)\"],\"isOpposite\": true}},{\"id\": \"63455b33-63b1-4baf-ac86-f3415f77c46d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Redshift Compute Cost\"],\"isOpposite\": true}},{\"id\": \"a5c13fb8-71d6-4e3d-ab49-f2cdd7153ddc\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Cluster Storage Utilization %\"],\"isOpposite\": true}},{\"id\": \"853b7ee2-a380-4529-99f1-5f1132a645b0\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Instance Type\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total Capacity (MB)\",\"color\": \"#06BF7F\"},{\"serieName\": \"Total Used (MB)\",\"color\": \"#FCC838\"},{\"serieName\": \"Total Daily Redshift Compute Cost\",\"color\": \"#48D1E0\"},{\"serieName\": \"Cluster Storage Utilization %\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+    display_headline_column: Cluster Storage Utilization %
+  - id: Viz_3
+    answer:
+      name: Total Used (MB)
+      tables:
+      - id: Clusters
+        name: Clusters
+      search_query: "[Capacity (MB)] [Used (MB)] [Instance Type] [Daily Redshift Compute Cost] [Cluster Storage Utilization %]"
+      answer_columns:
+      - name: Total Daily Redshift Compute Cost
+      - name: Total Used (MB)
+      - name: Total Capacity (MB)
+      - name: Instance Type
+      - name: Cluster Storage Utilization %
+      table:
+        table_columns:
+        - column_id: Instance Type
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Total Capacity (MB)
+          headline_aggregation: SUM
+        - column_id: Total Used (MB)
+          headline_aggregation: SUM
+        - column_id: Total Daily Redshift Compute Cost
+          headline_aggregation: TABLE_AGGR
+        - column_id: Cluster Storage Utilization %
+          headline_aggregation: TABLE_AGGR
+        ordered_column_ids:
+        - Instance Type
+        - Total Capacity (MB)
+        - Total Used (MB)
+        - Total Daily Redshift Compute Cost
+        - Cluster Storage Utilization %
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Instance Type
+        - column_id: Total Capacity (MB)
+        - column_id: Total Used (MB)
+        - column_id: Total Daily Redshift Compute Cost
+        - column_id: Cluster Storage Utilization %
+        axis_configs:
+        - x:
+          - Instance Type
+          "y":
+          - Total Capacity (MB)
+          - Total Used (MB)
+          - Total Daily Redshift Compute Cost
+          - Cluster Storage Utilization %
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {}},\"axisProperties\": [{\"id\": \"22224083-8a75-4450-b004-49de51cc41ce\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Capacity (MB)\"],\"isOpposite\": false}},{\"id\": \"2627b673-8833-4f43-b4d6-353dec7aab9f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Used (MB)\"],\"isOpposite\": true}},{\"id\": \"63455b33-63b1-4baf-ac86-f3415f77c46d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Redshift Compute Cost\"],\"isOpposite\": true}},{\"id\": \"a5c13fb8-71d6-4e3d-ab49-f2cdd7153ddc\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Cluster Storage Utilization %\"],\"isOpposite\": true}},{\"id\": \"853b7ee2-a380-4529-99f1-5f1132a645b0\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Instance Type\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total Capacity (MB)\",\"color\": \"#06BF7F\"},{\"serieName\": \"Total Used (MB)\",\"color\": \"#FCC838\"},{\"serieName\": \"Total Daily Redshift Compute Cost\",\"color\": \"#48D1E0\"},{\"serieName\": \"Cluster Storage Utilization %\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+    display_headline_column: Total Used (MB)
+  - id: Viz_4
+    answer:
+      name: Total Capacity (MB)
+      tables:
+      - id: Clusters
+        name: Clusters
+      search_query: "[Capacity (MB)] [Used (MB)] [Instance Type] [Daily Redshift Compute Cost] [Cluster Storage Utilization %]"
+      answer_columns:
+      - name: Total Capacity (MB)
+      - name: Instance Type
+      - name: Total Daily Redshift Compute Cost
+      - name: Total Used (MB)
+      - name: Cluster Storage Utilization %
+      table:
+        table_columns:
+        - column_id: Instance Type
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Total Capacity (MB)
+          headline_aggregation: SUM
+        - column_id: Total Used (MB)
+          headline_aggregation: SUM
+        - column_id: Total Daily Redshift Compute Cost
+          headline_aggregation: TABLE_AGGR
+        - column_id: Cluster Storage Utilization %
+          headline_aggregation: TABLE_AGGR
+        ordered_column_ids:
+        - Instance Type
+        - Total Capacity (MB)
+        - Total Used (MB)
+        - Total Daily Redshift Compute Cost
+        - Cluster Storage Utilization %
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Instance Type
+        - column_id: Total Capacity (MB)
+        - column_id: Total Used (MB)
+        - column_id: Total Daily Redshift Compute Cost
+        - column_id: Cluster Storage Utilization %
+        axis_configs:
+        - x:
+          - Instance Type
+          "y":
+          - Total Capacity (MB)
+          - Total Used (MB)
+          - Total Daily Redshift Compute Cost
+          - Cluster Storage Utilization %
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {}},\"axisProperties\": [{\"id\": \"22224083-8a75-4450-b004-49de51cc41ce\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Capacity (MB)\"],\"isOpposite\": false}},{\"id\": \"2627b673-8833-4f43-b4d6-353dec7aab9f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Used (MB)\"],\"isOpposite\": true}},{\"id\": \"63455b33-63b1-4baf-ac86-f3415f77c46d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Redshift Compute Cost\"],\"isOpposite\": true}},{\"id\": \"a5c13fb8-71d6-4e3d-ab49-f2cdd7153ddc\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Cluster Storage Utilization %\"],\"isOpposite\": true}},{\"id\": \"853b7ee2-a380-4529-99f1-5f1132a645b0\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Instance Type\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total Capacity (MB)\",\"color\": \"#06BF7F\"},{\"serieName\": \"Total Used (MB)\",\"color\": \"#FCC838\"},{\"serieName\": \"Total Daily Redshift Compute Cost\",\"color\": \"#48D1E0\"},{\"serieName\": \"Cluster Storage Utilization %\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+    display_headline_column: Total Capacity (MB)
+  - id: Viz_5
+    answer:
+      name: Load Errors by Error Reason
+      tables:
+      - id: Errors
+        name: Errors
+      search_query: "[Errors] by [Error Reason]"
+      answer_columns:
+      - name: Error Reason
+      - name: Errors
+      table:
+        table_columns:
+        - column_id: Error Reason
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Errors
+          headline_aggregation: SUM
+        ordered_column_ids:
+        - Error Reason
+        - Errors
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: Error Reason
+        - column_id: Errors
+        axis_configs:
+        - x:
+          - Error Reason
+          "y":
+          - Errors
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"chartSpecific\": {},\"showStackedLabels\": true,\"allLabels\": true},\"columnProperties\": [{\"columnId\": \"Errors\",\"columnProperty\": {\"dataLabels\": true}}],\"axisProperties\": [{\"id\": \"50155eb3-a788-463b-9b82-6f5e58775e9f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Errors\"],\"isOpposite\": false}},{\"id\": \"2fe35b1c-8a58-4166-8099-da09aec653e8\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Error Reason\"]}}]}"
+      display_mode: CHART_MODE
+  - id: Viz_6
+    answer:
+      name: Active Sessions
+      tables:
+      - id: Active Sessions
+        name: Active Sessions
+      search_query: "[Session ID] [User Name] [Session Length (seconds)]"
+      answer_columns:
+      - name: User Name
+      - name: Session Length (seconds)
+      - name: Session ID
+      table:
+        table_columns:
+        - column_id: Session ID
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: User Name
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Session Length (seconds)
+          headline_aggregation: COUNT_DISTINCT
+        ordered_column_ids:
+        - Session ID
+        - User Name
+        - Session Length (seconds)
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: SCATTER
+        chart_columns:
+        - column_id: Session ID
+        - column_id: User Name
+        - column_id: Session Length (seconds)
+        axis_configs:
+        - x:
+          - User Name
+          "y":
+          - Session Length (seconds)
+          category:
+          - Session ID
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"chartSpecific\": {}},\"axisProperties\": [{\"id\": \"165bf4b0-afbf-4113-a06b-793a8b490ef8\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Session Length (seconds)\"],\"isOpposite\": false}},{\"id\": \"c96ddcab-a286-4016-9c3f-bb9f1077bd1a\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Name\"]}}]}"
+      display_mode: TABLE_MODE
+  - id: Viz_7
+    answer:
+      name: Running Queries
+      tables:
+      - id: Active Queries
+        name: Active Queries
+      search_query: "[Query] [Session ID] [Status] [Database Name] [Duration] [User Name]"
+      answer_columns:
+      - name: Database Name
+      - name: User Name
+      - name: Status
+      - name: Session ID
+      - name: Duration
+      - name: Query
+      table:
+        table_columns:
+        - column_id: Query
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Session ID
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Status
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Database Name
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Duration
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: User Name
+          headline_aggregation: COUNT_DISTINCT
+        ordered_column_ids:
+        - Query
+        - Session ID
+        - Status
+        - Database Name
+        - Duration
+        - User Name
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Query\",\"columnProperty\": {}},{\"columnId\": \"Session ID\",\"columnProperty\": {}},{\"columnId\": \"Status\",\"columnProperty\": {}},{\"columnId\": \"Database Name\",\"columnProperty\": {}},{\"columnId\": \"Duration\",\"columnProperty\": {}},{\"columnId\": \"User Name\",\"columnProperty\": {}}]}"
+      chart:
+        type: SCATTER
+        chart_columns:
+        - column_id: Query
+        - column_id: Session ID
+        - column_id: Status
+        - column_id: Database Name
+        - column_id: Duration
+        - column_id: User Name
+        axis_configs:
+        - x:
+          - Session ID
+          "y":
+          - Duration
+          color:
+          - Status
+          - Database Name
+          - User Name
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {}},\"axisProperties\": [{\"id\": \"d31cf9d4-a025-4ebd-86e6-71a80ffa8526\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Duration\"],\"isOpposite\": false}},{\"id\": \"f93ea011-4cca-4932-bce5-f76063c476db\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Session ID\"]}}]}"
+      display_mode: TABLE_MODE
+  - id: Viz_8
+    answer:
+      name: Rows by Table
+      description: Top 10
+      tables:
+      - id: Storage by Table
+        name: Storage by Table
+      search_query: "[Table] [Rows in Table] top 10"
+      answer_columns:
+      - name: Table
+      - name: Total Rows in Table
+      table:
+        table_columns:
+        - column_id: Table
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Total Rows in Table
+          headline_aggregation: SUM
+        ordered_column_ids:
+        - Table
+        - Total Rows in Table
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"wrapTableHeader\": true}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Table
+        - column_id: Total Rows in Table
+        axis_configs:
+        - x:
+          - Table
+          "y":
+          - Total Rows in Table
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {},\"showStackedLabels\": true,\"allLabels\": true},\"columnProperties\": [{\"columnId\": \"Total Rows in Table\",\"columnProperty\": {\"dataLabels\": true}}],\"axisProperties\": [{\"id\": \"1eae82a5-82c8-47b4-bcd1-16772cb7d07b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Rows in Table\"],\"isOpposite\": false}},{\"id\": \"b6794fc1-c6ea-4a73-b418-a4e3b5ac1c30\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Table\"]}}],\"systemSeriesColors\": [{\"serieName\": \"station\",\"color\": \"#FCC838\"},{\"serieName\": \"b6783a3f-5462-5e91-a9b7-f3ed32a254e1\",\"color\": \"#2E75F0\"},{\"serieName\": \"Total Rows in Table\",\"color\": \"#2E75F0\"}]}"
+      display_mode: CHART_MODE
+  - id: Viz_9
+    answer:
+      name: Queries by Database
+      tables:
+      - id: Query History
+        name: Query History
+      search_query: "[Queries] by [Database]"
+      answer_columns:
+      - name: Queries
+      - name: Database
+      table:
+        table_columns:
+        - column_id: Database
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Queries
+          headline_aggregation: SUM
+        ordered_column_ids:
+        - Database
+        - Queries
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: Database
+        - column_id: Queries
+        axis_configs:
+        - x:
+          - Database
+          "y":
+          - Queries
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {},\"showStackedLabels\": true,\"allLabels\": true},\"columnProperties\": [{\"columnId\": \"Queries\",\"columnProperty\": {\"dataLabels\": true}}],\"axisProperties\": [{\"id\": \"f05dbc48-41f7-4605-819e-4edea367c853\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Queries\"],\"isOpposite\": false}},{\"id\": \"6f7b868f-2b40-4ec0-b7a4-a3d30ed405df\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Database\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Queries\",\"color\": \"#2E75F0\"},{\"serieName\": \"dev                             \",\"color\": \"#FCC838\"},{\"serieName\": \"padb_harvest                    \",\"color\": \"#48D1E0\"},{\"serieName\": \"template1                       \",\"color\": \"#2E75F0\"}]}"
+      display_mode: CHART_MODE
+  - id: Viz_10
+    answer:
+      name: Queries by User Name
+      tables:
+      - id: Query History
+        name: Query History
+      search_query: "[Queries] by [User Name]"
+      answer_columns:
+      - name: Queries
+      - name: User Name
+      table:
+        table_columns:
+        - column_id: User Name
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Queries
+          headline_aggregation: SUM
+        ordered_column_ids:
+        - User Name
+        - Queries
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: User Name
+        - column_id: Queries
+        axis_configs:
+        - x:
+          - User Name
+          "y":
+          - Queries
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {},\"showStackedLabels\": true,\"allLabels\": true},\"columnProperties\": [{\"columnId\": \"Queries\",\"columnProperty\": {\"dataLabels\": true}}],\"axisProperties\": [{\"id\": \"abb0c85a-8d67-4123-8c96-93255b5cfae5\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Queries\"],\"isOpposite\": false}},{\"id\": \"0e335859-cc44-448f-b8af-3e8dd7d562e4\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Queries\",\"color\": \"#2E75F0\"},{\"serieName\": \"dev                             \",\"color\": \"#FCC838\"},{\"serieName\": \"padb_harvest                    \",\"color\": \"#48D1E0\"},{\"serieName\": \"template1                       \",\"color\": \"#2E75F0\"},{\"serieName\": \"awsuser                                                                                                                        \",\"color\": \"#48D1E0\"},{\"serieName\": \"rdsdb                                                                                                                          \",\"color\": \"#2E75F0\"}]}"
+      display_mode: CHART_MODE
+  - id: Viz_11
+    answer:
+      name: Queries by Service Class
+      tables:
+      - id: Query History
+        name: Query History
+      search_query: "[Queries] by [Service Class]"
+      answer_columns:
+      - name: Queries
+      - name: Service Class
+      table:
+        table_columns:
+        - column_id: Service Class
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Queries
+          headline_aggregation: SUM
+        ordered_column_ids:
+        - Service Class
+        - Queries
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: Service Class
+        - column_id: Queries
+        axis_configs:
+        - x:
+          - Service Class
+          "y":
+          - Queries
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {},\"showStackedLabels\": true,\"allLabels\": true},\"columnProperties\": [{\"columnId\": \"Queries\",\"columnProperty\": {\"dataLabels\": true}}],\"axisProperties\": [{\"id\": \"941e674d-f6a6-4832-8076-dcf3bd14d137\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Queries\"],\"isOpposite\": false}},{\"id\": \"784dd77e-6177-4105-8740-ff045d03c6c7\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Service Class\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Queries\",\"color\": \"#48D1E0\"},{\"serieName\": \"default queue                                                   \",\"color\": \"#06BF7F\"},{\"serieName\": \"service class for system user (cm stats)                        \",\"color\": \"#FCD977\"},{\"serieName\": \"service class for system user (health check)                    \",\"color\": \"#FCC838\"},{\"serieName\": \"service class for system user (metrics collection)              \",\"color\": \"#82DFE9\"},{\"serieName\": \"service class for system user (operator)                        \",\"color\": \"#48D1E0\"},{\"serieName\": \"service class for vacuum/analyze                                \",\"color\": \"#71A1F4\"},{\"serieName\": \"short query queue                                               \",\"color\": \"#2E75F0\"}]}"
+      display_mode: CHART_MODE
+  - id: Viz_12
+    answer:
+      name: Total Elapsed (seconds) by Query Text
+      description: Top 10
+      tables:
+      - id: Query History
+        name: Query History
+      search_query: "[Elapsed (seconds)] [Query Text] top 10"
+      answer_columns:
+      - name: Total Elapsed (seconds)
+      - name: Query Text
+      table:
+        table_columns:
+        - column_id: Query Text
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Total Elapsed (seconds)
+          headline_aggregation: TABLE_AGGR
+        ordered_column_ids:
+        - Query Text
+        - Total Elapsed (seconds)
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"wrapTableHeader\": true}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Query Text
+        - column_id: Total Elapsed (seconds)
+        axis_configs:
+        - x:
+          - Query Text
+          "y":
+          - Total Elapsed (seconds)
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {}},\"axisProperties\": [{\"id\": \"57eb6978-fa05-4b25-9e37-9896c6ec9bc6\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Elapsed (seconds)\"],\"isOpposite\": false}},{\"id\": \"3d8efde3-8be4-4af1-8abe-4a9da489671c\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Query Text\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total Elapsed (seconds)\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+  - id: Viz_13
+    answer:
+      name: Total Elapsed (seconds) by User Name
+      tables:
+      - id: Query History
+        name: Query History
+      search_query: "[Elapsed (seconds)] by [User Name]"
+      answer_columns:
+      - name: User Name
+      - name: Total Elapsed (seconds)
+      table:
+        table_columns:
+        - column_id: User Name
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Total Elapsed (seconds)
+          headline_aggregation: TABLE_AGGR
+        ordered_column_ids:
+        - User Name
+        - Total Elapsed (seconds)
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"wrapTableHeader\": true}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: User Name
+        - column_id: Total Elapsed (seconds)
+        axis_configs:
+        - x:
+          - User Name
+          "y":
+          - Total Elapsed (seconds)
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {},\"showStackedLabels\": true,\"allLabels\": true},\"columnProperties\": [{\"columnId\": \"Total Elapsed (seconds)\",\"columnProperty\": {\"dataLabels\": true}}],\"axisProperties\": [{\"id\": \"b206e7b5-c858-4673-91bd-e85acacae27a\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Elapsed (seconds)\"],\"isOpposite\": false}},{\"id\": \"7c742da5-0d04-441b-894e-3cf28feccefc\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total Elapsed (seconds)\",\"color\": \"#8C62F5\"},{\"serieName\": \"awsuser                                                                                                                        \",\"color\": \"#48D1E0\"},{\"serieName\": \"rdsdb                                                                                                                          \",\"color\": \"#2E75F0\"}]}"
+      display_mode: CHART_MODE
+  - id: Viz_14
+    answer:
+      name: Cost Assumptions by Node
+      tables:
+      - id: Clusters
+        name: Clusters
+      search_query: "[Node] [Instance Type] [Daily Operation Hour] [Daily Redshift Compute Cost] [Concurrency Price Per Second] [Price Per Node Per Hour] [Spectrum Price Per Tb]"
+      answer_columns:
+      - name: Total Price Per Node Per Hour
+      - name: Total Concurrency Price Per Second
+      - name: Total Daily Operation Hour
+      - name: Node
+      - name: Total Spectrum Price Per Tb
+      - name: Total Daily Redshift Compute Cost
+      - name: Instance Type
+      table:
+        table_columns:
+        - column_id: Node
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Instance Type
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Total Daily Operation Hour
+          headline_aggregation: SUM
+        - column_id: Total Daily Redshift Compute Cost
+          headline_aggregation: TABLE_AGGR
+        - column_id: Total Concurrency Price Per Second
+          headline_aggregation: SUM
+        - column_id: Total Price Per Node Per Hour
+          headline_aggregation: SUM
+        - column_id: Total Spectrum Price Per Tb
+          headline_aggregation: SUM
+        ordered_column_ids:
+        - Node
+        - Instance Type
+        - Total Daily Operation Hour
+        - Total Daily Redshift Compute Cost
+        - Total Concurrency Price Per Second
+        - Total Price Per Node Per Hour
+        - Total Spectrum Price Per Tb
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"wrapTableHeader\": true,\"columnProperties\": [{\"columnId\": \"Node\",\"columnProperty\": {}},{\"columnId\": \"Instance Type\",\"columnProperty\": {}},{\"columnId\": \"Total Daily Operation Hour\",\"columnProperty\": {}},{\"columnId\": \"Total Daily Redshift Compute Cost\",\"columnProperty\": {}},{\"columnId\": \"Total Concurrency Price Per Second\",\"columnProperty\": {}},{\"columnId\": \"Total Price Per Node Per Hour\",\"columnProperty\": {}},{\"columnId\": \"Total Spectrum Price Per Tb\",\"columnProperty\": {}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Node
+        - column_id: Instance Type
+        - column_id: Total Daily Operation Hour
+        - column_id: Total Daily Redshift Compute Cost
+        - column_id: Total Concurrency Price Per Second
+        - column_id: Total Price Per Node Per Hour
+        - column_id: Total Spectrum Price Per Tb
+        axis_configs:
+        - x:
+          - Node
+          "y":
+          - Total Daily Operation Hour
+          - Total Daily Redshift Compute Cost
+          - Total Concurrency Price Per Second
+          - Total Price Per Node Per Hour
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {}},\"columnProperties\": [{\"columnId\": \"Node\",\"columnProperty\": {}},{\"columnId\": \"Instance Type\",\"columnProperty\": {}},{\"columnId\": \"Total Daily Operation Hour\",\"columnProperty\": {}},{\"columnId\": \"Total Daily Redshift Compute Cost\",\"columnProperty\": {}},{\"columnId\": \"Total Concurrency Price Per Second\",\"columnProperty\": {}},{\"columnId\": \"Total Price Per Node Per Hour\",\"columnProperty\": {}},{\"columnId\": \"Total Spectrum Price Per Tb\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"b8e697d2-a14b-4ec1-b5fc-82b2c3718731\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Operation Hour\"],\"isOpposite\": false}},{\"id\": \"2fb8cc7a-56cb-446f-a143-f02d92761ef2\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Redshift Compute Cost\"],\"isOpposite\": true}},{\"id\": \"1fb62529-1b28-4d27-89e9-6ba4643f1f4b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Concurrency Price Per Second\"],\"isOpposite\": true}},{\"id\": \"63a2bfad-6ffb-4839-9005-219318a904ed\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Price Per Node Per Hour\"],\"isOpposite\": true}},{\"id\": \"e89f67ba-61bd-45e5-8ef3-059b1ea63241\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Node\"]}}]}"
+      display_mode: TABLE_MODE
+  - id: Viz_15
+    answer:
+      name: Nodes
+      tables:
+      - id: Clusters
+        name: Clusters
+      search_query: "[Capacity (MB)] [Used (MB)] [Instance Type] [Daily Redshift Compute Cost] [Cluster Storage Utilization %] [Node]"
+      answer_columns:
+      - name: Instance Type
+      - name: Cluster Storage Utilization %
+      - name: Total Used (MB)
+      - name: Node
+      - name: Total Capacity (MB)
+      - name: Total Daily Redshift Compute Cost
+      table:
+        table_columns:
+        - column_id: Instance Type
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Node
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Total Capacity (MB)
+          headline_aggregation: SUM
+        - column_id: Total Used (MB)
+          headline_aggregation: SUM
+        - column_id: Total Daily Redshift Compute Cost
+          headline_aggregation: TABLE_AGGR
+        - column_id: Cluster Storage Utilization %
+          headline_aggregation: TABLE_AGGR
+        ordered_column_ids:
+        - Instance Type
+        - Node
+        - Total Capacity (MB)
+        - Total Used (MB)
+        - Total Daily Redshift Compute Cost
+        - Cluster Storage Utilization %
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"wrapTableHeader\": true}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Instance Type
+        - column_id: Node
+        - column_id: Total Capacity (MB)
+        - column_id: Total Used (MB)
+        - column_id: Total Daily Redshift Compute Cost
+        - column_id: Cluster Storage Utilization %
+        axis_configs:
+        - x:
+          - Instance Type
+          "y":
+          - Total Capacity (MB)
+          - Total Used (MB)
+          - Total Daily Redshift Compute Cost
+          - Cluster Storage Utilization %
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT1\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {}},\"columnProperties\": [{\"columnId\": \"Instance Type\",\"columnProperty\": {}},{\"columnId\": \"Node\",\"columnProperty\": {}},{\"columnId\": \"Total Capacity (MB)\",\"columnProperty\": {}},{\"columnId\": \"Total Used (MB)\",\"columnProperty\": {}},{\"columnId\": \"Total Daily Redshift Compute Cost\",\"columnProperty\": {}},{\"columnId\": \"Cluster Storage Utilization %\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"22224083-8a75-4450-b004-49de51cc41ce\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Capacity (MB)\"],\"isOpposite\": false}},{\"id\": \"2627b673-8833-4f43-b4d6-353dec7aab9f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Used (MB)\"],\"isOpposite\": true}},{\"id\": \"63455b33-63b1-4baf-ac86-f3415f77c46d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Redshift Compute Cost\"],\"isOpposite\": true}},{\"id\": \"a5c13fb8-71d6-4e3d-ab49-f2cdd7153ddc\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Cluster Storage Utilization %\"],\"isOpposite\": true}},{\"id\": \"853b7ee2-a380-4529-99f1-5f1132a645b0\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Instance Type\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total Capacity (MB)\",\"color\": \"#06BF7F\"},{\"serieName\": \"Total Used (MB)\",\"color\": \"#FCC838\"},{\"serieName\": \"Total Daily Redshift Compute Cost\",\"color\": \"#48D1E0\"},{\"serieName\": \"Cluster Storage Utilization %\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+    display_headline_column: Node
+  layout:
+    tiles:
+    - visualization_id: Viz_15
+      size: EXTRA_SMALL
+    - visualization_id: Viz_2
+      size: EXTRA_SMALL
+    - visualization_id: Viz_3
+      size: EXTRA_SMALL
+    - visualization_id: Viz_4
+      size: EXTRA_SMALL
+    - visualization_id: Viz_14
+      size: LARGE_SMALL
+    - visualization_id: Viz_7
+      size: MEDIUM_SMALL
+    - visualization_id: Viz_5
+      size: MEDIUM_SMALL
+    - visualization_id: Viz_1
+      size: MEDIUM
+    - visualization_id: Viz_6
+      size: MEDIUM
+    - visualization_id: Viz_8
+      size: MEDIUM
+    - visualization_id: Viz_9
+      size: MEDIUM
+    - visualization_id: Viz_10
+      size: MEDIUM
+    - visualization_id: Viz_11
+      size: MEDIUM
+    - visualization_id: Viz_12
+      size: MEDIUM
+    - visualization_id: Viz_13
+      size: MEDIUM
