@@ -4,7 +4,7 @@ Monitor Redshift cluster performance and team usuage on Thoughtspot.
 
 In every Redshift database there is a schema called pg_catalog that includes system tables that store storage and performance data from the entire data warehouse. ThoughtSpot has selected the tables most meaningful for analyzing storage and performance trends and made this data easily searchable via ThoughtSpot. There is always room for customization to any template, but the DDL, worksheets and pinboard content that comprise this SpotApp definitely will provide a solid starting point for anyone who wants to explore and analyze their Redshift Storage & Performance data.
 
-# Artifcats 
+# Artifacts 
 
 ## Worksheets
 redshift_tmlblocks_worksheets.zip
