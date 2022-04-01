@@ -7,7 +7,6 @@ In every Redshift database there is a schema called pg_catalog that includes sys
 # Artifacts 
 
 ## Worksheets
-redshift_tmlblocks_worksheets.zip
 - Clusters
 - Storage by Table
 - Query History
@@ -16,7 +15,6 @@ redshift_tmlblocks_worksheets.zip
 - Active Queries
 
 ## Liveboards
-redshift_tmlblocks_liveboards.zip
 - Amazon Redshift: Management Dashboard
 - Amazon Redshift: Performance and Consumption 
 
