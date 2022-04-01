@@ -80,7 +80,7 @@ Log into your ThoughtSpot instance and create an Embrace connection to Redshift.
 
 ## Thoughtspot Table Joins 
 
-To ensure the successful import of the worksheet and pinboards, joins need to be added to the tables in ThoughtSpots. Because these are views in Redshift and the joins cannot be “inherited” directly from the data warehouse, the joins must be added manually in the interface.
+To ensure the successful import of the worksheet and pinboards, joins need to be added to the tables in ThoughtSpot. Because these are views in Redshift and the joins cannot be “inherited” directly from the data warehouse, the joins must be added manually in the interface.
 
 Please add the following joins to the tables. (IMPORTANT: You will only have to do this once).
 
