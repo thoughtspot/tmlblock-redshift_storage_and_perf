@@ -13,6 +13,7 @@ In every Redshift database, there is a schema called pg_catalog that includes sy
 - Errors
 - Alerts
 - Active Queries
+- Active Sessions
 
 ## Liveboards
 - Amazon Redshift: Management Dashboard
