@@ -62,21 +62,21 @@ grant select on all tables in schema public to your_username;
 
 ## Connect Redshift and Thoughtspot 
 Log into your ThoughtSpot instance and create an Embrace connection to Redshift. You should have the following tables available in your ThoughtSpot account:
-pg_user_vw
-stl_alert_event_log_vw
-stl_ddltext_vw
-stl_load_errors_vw
-stl_plan_info_vw
-stl_query_vw
-stl_wlm_query_vw
-stv_node_storage_capacity_vw
-stv_recents_vw
-stv_sessions_vw
-stv_wlm_service_class_config_vw
-svl_qlog_vw
-svl_query_metrics_summary_vw
-svl_s3query_summary_vw
-svv_table_info_vw
+- pg_user_vw
+- stl_alert_event_log_vw
+- stl_ddltext_vw
+- stl_load_errors_vw
+- stl_plan_info_vw
+- stl_query_vw
+- stl_wlm_query_vw
+- stv_node_storage_capacity_vw
+- stv_recents_vw
+- stv_sessions_vw
+- stv_wlm_service_class_config_vw
+- svl_qlog_vw
+- svl_query_metrics_summary_vw
+- svl_s3query_summary_vw
+- svv_table_info_vw
 
 ## Thoughtspot Table Joins 
 
@@ -106,6 +106,26 @@ Please add the following joins to the tables. (IMPORTANT: You will only have to 
 | svl_query_metrics_summary_vw | None |
 | svl_s3query_summary_vw | None |
 | svv_table_info_vw | None |
+
+### Import TML
+ 
+- Combine all worksheet TML files into a ZIP file: 
+  - Worksheet_Manifest.yaml
+  - Active Queries.worksheet.tml
+  - Active Sessions.worksheet.tml
+  - Alerts.worksheet.tml
+  - Clusters.worksheet.tml
+  - Errors.worksheet.tml
+  - Query History.worksheet.tml
+  - Storage by Table.worksheet.tml
+
+- Combine all pinboard/liveboard TML files into a seperate ZIP file: 
+  - pinboard_Manifest.yaml
+  - Amazon Redshift: Management Dashboard.pinboard.tml
+  - Amazon Redshift: Performance and Consumption.pinboard.tml
+ 
+- Import the zipped file containing TML for the worksheets and verify that it has all been imported without any errors.
+- Import the zipped file for the liveboards and verify that it has all been imported without any errors.
 
 # Liveboard Screenshots 
 
