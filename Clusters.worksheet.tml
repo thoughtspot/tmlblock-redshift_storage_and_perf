@@ -1,0 +1,108 @@
+guid: 2bec606c-c3c1-497a-ab8e-5b56cd6ec654
+worksheet:
+  name: Clusters
+  description: Get details of Redshift Cluster
+  tables:
+  - name: stv_node_storage_capacity_vw
+  table_paths:
+  - id: stv_node_storage_capacity_vw_1
+    table: stv_node_storage_capacity_vw
+    join_path:
+    - {}
+  formulas:
+  - name: Capacity (TB)
+    expr: "[stv_node_storage_capacity_vw_1::capacity] * .000001"
+  - name: Cluster Storage Utilization %
+    expr: "sum ( [stv_node_storage_capacity_vw_1::used] ) / sum ( [stv_node_storage_capacity_vw_1::capacity] ) * 100"
+  - name: Concurrency Price Per Second
+    expr: ".013"
+  - name: Daily Redshift Compute Cost
+    expr: "[Price Per Node Per Hour] * [Daily Operation Hour]"
+  - name: Daily Operation Hour
+    expr: "24"
+  - name: Instance Type
+    expr: '''dc2.large'''
+  - name: Price Per Node Per Hour
+    expr: ".25"
+  - name: Spectrum Price Per TB
+    expr: "5.0"
+  - name: Used (TB)
+    expr: "[stv_node_storage_capacity_vw_1::used] * .000001"
+  worksheet_columns:
+  - name: Node
+    description: The node number.
+    column_id: stv_node_storage_capacity_vw_1::node
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Used (MB)
+    description: "The number of 1 MB disk blocks currently in use on the node. For RA3 node types, used blocks include both locally cached blocks and blocks persisted in Amazon S3."
+    column_id: stv_node_storage_capacity_vw_1::used
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Capacity (MB)
+    description: "The total storage capacity provisioned for the node in 1 MB blocks. The capacity includes space that is reserved by Amazon Redshift on DS2 or DC2 node types for internal use. The capacity is larger than the nominal node capacity, which is the amount of node space available for user data. For RA3 node types, this capacity is the same as the total managed storage quota for the cluster. For more information about capacity by node type, see Node type details in the Amazon Redshift Cluster Management Guide."
+    column_id: stv_node_storage_capacity_vw_1::capacity
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Price Per Node Per Hour
+    description: Static variable of pricing per node per hour to estimate total costs
+    formula_id: Price Per Node Per Hour
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+  - name: Daily Operation Hour
+    description: Static variable of hours operated per day to estimate total costs
+    formula_id: Daily Operation Hour
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+  - name: Spectrum Price Per Tb
+    description: Static variable of pricing per node per hour to estimate total costs
+    formula_id: Spectrum Price Per TB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+  - name: Concurrency Price Per Second
+    description: Static variable of pricing per node per hour to estimate total costs
+    formula_id: Concurrency Price Per Second
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+  - name: Daily Redshift Compute Cost
+    description: The estimated compute cost (in USD) of the Amazon Redshift cluster for the day
+    formula_id: Daily Redshift Compute Cost
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+  - name: Used (TB)
+    description: "The number of 1 MB disk blocks currently in use on the node. For RA3 node types, used blocks include both locally cached blocks and blocks persisted in Amazon S3."
+    formula_id: Used (TB)
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+  - name: Capacity (TB)
+    description: "The number of 1 MB disk blocks currently in use on the node. For RA3 node types, used blocks include both locally cached blocks and blocks persisted in Amazon S3."
+    formula_id: Capacity (TB)
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+  - name: Cluster Storage Utilization %
+    description: '% of total storage used.'
+    formula_id: Cluster Storage Utilization %
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Instance Type
+    description: Static variable to identify type of instance https://aws.amazon.com/redshift/pricing/
+    formula_id: Instance Type
+    properties:
+      column_type: ATTRIBUTE
+  properties:
+    is_bypass_rls: false
+    join_progressive: true

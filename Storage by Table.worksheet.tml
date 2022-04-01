@@ -1,0 +1,46 @@
+guid: 8b1f466d-dc3e-417f-b474-b06974994f0b
+worksheet:
+  name: Storage by Table
+  description: Displays storage by table in Redshift.
+  tables:
+  - name: svv_table_info_vw
+  table_paths:
+  - id: svv_table_info_vw_1
+    table: svv_table_info_vw
+    join_path:
+    - {}
+  worksheet_columns:
+  - name: Database Name
+    description: Database name.
+    column_id: svv_table_info_vw_1::database
+    properties:
+      column_type: ATTRIBUTE
+  - name: Table
+    description: Table name.
+    column_id: svv_table_info_vw_1::table
+    properties:
+      column_type: ATTRIBUTE
+  - name: Size
+    description: "Size of the table, in 1 MB data blocks."
+    column_id: svv_table_info_vw_1::size
+    properties:
+      column_type: ATTRIBUTE
+      aggregation: SUM
+      index_type: DONT_INDEX
+      is_additive: true
+  - name: Percent Used
+    description: Percent of available space that is used by the table.
+    column_id: svv_table_info_vw_1::pct_used
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Rows in Table
+    description: "Total number of rows in the table. This value includes rows marked for deletion, but not yet vacuumed."
+    column_id: svv_table_info_vw_1::tbl_rows
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  properties:
+    is_bypass_rls: false
+    join_progressive: true
