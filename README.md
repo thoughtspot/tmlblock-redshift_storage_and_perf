@@ -36,25 +36,48 @@ The tables that appear in the pg_catalog schema in any Redshift database are not
 
 **To create these views, please run the following SQL queries in Redshift. (Please replace “your_db_name” with the name of the database that you are using).**
 
-`
-create view b2cmarketing.public.pg_user_vw as select * from b2cmarketing.pg_catalog.pg_user;
-create view b2cmarketing.public.stl_alert_event_log_vw as select * from b2cmarketing.pg_catalog.stl_alert_event_log;
-create view b2cmarketing.public.stl_ddltext_vw as select * from b2cmarketing.pg_catalog.stl_ddltext;
-create view b2cmarketing.public.stl_load_errors_vw as select * from b2cmarketing.pg_catalog.stl_load_errors;
-create view b2cmarketing.public.stl_plan_info_vw as select * from b2cmarketing.pg_catalog.stl_plan_info;
-create view b2cmarketing.public.stl_query_vw as select * from b2cmarketing.pg_catalog.stl_query;
-create view b2cmarketing.public.stl_wlm_query_vw as select * from b2cmarketing.pg_catalog.stl_wlm_query;
-create view b2cmarketing.public.stv_node_storage_capacity_vw as select * from b2cmarketing.pg_catalog.stv_node_storage_capacity;
-create view b2cmarketing.public.stv_recents_vw as select * from b2cmarketing.pg_catalog.stv_recents;
-create view b2cmarketing.public.stv_sessions_vw as select * from b2cmarketing.pg_catalog.stv_sessions;
-create view b2cmarketing.public.stv_wlm_service_class_config_vw as select * from b2cmarketing.pg_catalog.stv_wlm_service_class_config;
-create view b2cmarketing.public.svl_qlog_vw as select * from b2cmarketing.pg_catalog.svl_qlog;
-create view b2cmarketing.public.svl_query_metrics_summary_vw as select * from b2cmarketing.pg_catalog.svl_query_metrics_summary;
-create view b2cmarketing.public.svl_s3query_summary_vw as select * from b2cmarketing.pg_catalog.svl_s3query_summary;
-create view b2cmarketing.public.svv_table_info_vw as select * from b2cmarketing.pg_catalog.svv_table_info;
-`
+1. You get select and usage permissions to the below mentioned tables which are present in the dev.pg_catalog (< database name.schema name >)
+- pg_user
+- stl_query
+- stl_wlm_query
+- stv_wlm_service_class_config
+- svl_qlog
+- stl_alert_event_log
+- svv_table_info
+- stv_sessions
+- stl_load_errors
+- stv_node_storage_capacity
+- stl_ddltext
+- stl_plan_info
+- svl_query_metrics_summary
+- svl_s3query_summary
 
-After the views have been created, make sure the Redshift user has the proper permission to query the views by executing the following SQL statements. **(Please replace “your_username” with your username and, if necessary, replace “public” with the name of the appropriate schema).**
+2. Check the access to the above tables by running select query to make sure that the user is able to access the tables.  
+
+
+4. Create the views in the dev.public schema on top of tables which are present in the dev.pg_catalog schema.
+(OR)
+Ask the Redshift team to create the views in dev.public schema by using below create view statements and grant select & usage permissions to the same views.
+
+```sql
+create view dev.public.pg_user_vw as select * from dev.pg_catalog.pg_user;
+create view dev.public.stl_alert_event_log_vw as select * from dev.pg_catalog.stl_alert_event_log;
+create view dev.public.stl_ddltext_vw as select * from dev.pg_catalog.stl_ddltext;
+create view dev.public.stl_load_errors_vw as select * from dev.pg_catalog.stl_load_errors;
+create view dev.public.stl_plan_info_vw as select * from dev.pg_catalog.stl_plan_info;
+create view dev.public.stl_query_vw as select * from dev.pg_catalog.stl_query;
+create view dev.public.stl_wlm_query_vw as select * from dev.pg_catalog.stl_wlm_query;
+create view dev.public.stv_node_storage_capacity_vw as select * from dev.pg_catalog.stv_node_storage_capacity;
+create view dev.public.stv_sessions_vw as select * from dev.pg_catalog.stv_sessions;
+create view dev.public.stv_wlm_service_class_config_vw as select * from dev.pg_catalog.stv_wlm_service_class_config;
+create view dev.public.svl_qlog_vw as select * from dev.pg_catalog.svl_qlog;
+create view dev.public.svl_query_metrics_summary_vw as select * from dev.pg_catalog.svl_query_metrics_summary;
+create view dev.public.svl_s3query_summary_vw as select * from dev.pg_catalog.svl_s3query_summary;
+create view dev.public.svv_table_info_vw as select * from dev.pg_catalog.svv_table_info;  
+
+```
+
+3. After the views have been created, make sure the Redshift user has the proper permission to query the views by executing the following SQL statements. **(Please replace “your_username” with your username and, if necessary, replace “public” with the name of the appropriate schema).**
 
 `
 grant usage on schema public to your_username;
