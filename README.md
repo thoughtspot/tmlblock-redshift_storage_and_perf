@@ -1,66 +1,76 @@
 #  TML Blocks - Redshift Storage & Performance
 
-Monitor Redshift cluster performance and team usage on Thoughtspot. 
+SpotApps are ThoughtSpot’s out-of-the-box solution templates built for specific use cases and data sources. They are built on ThoughtSpot Modeling Language (TML) Blocks, which are pre-built pieces of code that are easy to download and implement directly from the product.
 
-In every Redshift database, there is a schema called pg_catalog that includes system tables that store storage and performance data from the entire data warehouse. ThoughtSpot has selected the tables most meaningful for analyzing storage and performance trends and made this data easily searchable via ThoughtSpot. There is always room for customization to any template, but the DDL, worksheets and pinboard content that comprise this SpotApp definitely will provide a solid starting point for anyone who wants to explore and analyze their Redshift Storage & Performance data.
+The Redshift Performance and Consumption SpotApp mimics the Redshift data model. When you deploy it, ThoughtSpot creates several Worksheets, Answers, and Liveboards, based on your Redshift data in your cloud data warehouse. 
+
+In every Redshift database, there is a schema called pg_catalog that includes system tables that store storage and performance data from the entire data warehouse. ThoughtSpot has selected the tables most meaningful for analyzing storage and performance trends and made this data easily searchable via ThoughtSpot. There is always room for customization to any template, but the DDL, Worksheets and Liveboard content that comprise this SpotApp definitely will provide a solid starting point for anyone who wants to explore and analyze their Redshift Storage & Performance data.
 
 # Artifacts 
+- **Amazon Redshift Management Dashboard_schema.csv**: TML template files for the SpotApp.
+- **Amazon Redshift TML Block.zip**:The following table describes the schema for the Redshift Performance and Consumption SpotApp.
 
-## Worksheets
-- Clusters
-- Storage by Table
-- Query History
-- Errors
-- Alerts
-- Active Queries
-- Active Sessions
+# Prerequisites for Deploying the Redshift Performance and Consumption SpotApp
 
-## Liveboards
-- Amazon Redshift: Management Dashboard
-- Amazon Redshift: Performance and Consumption 
+Before you can deploy the Redshift Performance and Consumption SpotApp, you must complete the following prerequisites:
 
-# Redshift Storage & Performance SpotApp Implementation Steps
+## Review and Sync Data
 
-Once you have downloaded the Zip file and have verified its contents, the implementation steps are as follows:
+- **Review Required Data**: Review the required tables and columns for the SpotApp.
+- **Ensure Column Compatibility**: Ensure that your columns match the required column type listed in the schema for your SpotApp.
+- **Sync Data**: Sync all tables and columns from Redshift to your cloud data warehouse. While only specific tables and columns may be required, ThoughtSpot recommends syncing all tables and columns from Redshift to your CDW. The columns can be Redshift’s out-of-the-box columns, or any custom columns that you are using instead of the out-of-the-box columns.
+- **Collaborate on Data Movement**: If you are using an ETL/ELT tool or working with another team in your organization to move data, sync all columns from the tables listed in the SpotApp.
 
-1. Create the necessary views for the SpotApp referenced in the “Redshift Storage & Perform SpotApp pg_catalog Views” section below.
-2. Log into your ThoughtSpot instance and create an Embrace connection to all of the relevant views.
-3. Create all of the required joins between the views.
-4. Import the TML for the worksheets and verify that it has all been imported without any errors.
-5. Import the TML for the pinboard and verify that it has all been imported without any errors.
-6. You are ready to start searching your Redshift data!
+## Credentials and Access
 
-## Redshift Storage & Performance SpotApp pg_catalog Views
+- **Obtain Credentials and SYSADMIN Privileges**: Obtain the necessary credentials and SYSADMIN privileges to connect to Redshift. Ensure that the cloud data warehouse contains the data you would like ThoughtSpot to use to create Answers, Liveboards, and Worksheets. Refer to the Connection reference for Redshift for more information about required credentials.
+- **Unique Connection Name**: Ensure that the connection name for each new SpotApp is unique.
+- **Administrator Access to Redshift**: Maintain administrator access to manage Redshift resources.
+
+## Create or Access Views
+
+You must create views based on the following Redshift tables in your cloud data warehouse. If you already created the views, ensure access to these views, not just the tables. Refer to the [Redshift Performance and Consumption SpotApp schema](https://github.com/thoughtspot/tmlblock-redshift_storage_and_perf/blob/main/Amazon%20Redshift%20Management%20Dashboard_schema.csv) for more details.
+
+- `pg_user`
+- `stl_query`
+- `stl_wlm_query`
+- `stv_wlm_service_class_config`
+- `svl_qlog`
+- `stl_alert_event_log`
+- `svv_table_info`
+- `stv_sessions`
+- `stl_load_errors`
+- `stv_node_storage_capacity`
+- `stl_ddltext`
+- `stl_plan_info`
+- `svl_query_metrics_summary`
+- `svl_s3query_summary`
+
+### Access to the following Redshift views in your cloud data warehouse:
+
+- `pg_user_vw`
+- `stl_query_vw`
+- `stl_wlm_query_vw`
+- `stv_wlm_service_class_config_vw`
+- `svl_qlog_vw`
+- `stl_alert_event_log_vw`
+- `svv_table_info_vw`
+- `stv_sessions_vw`
+- `stl_load_errors_vw`
+- `stv_node_storage_capacity_vw`
+- `stl_ddltext_vw`
+- `stl_plan_info_vw`
+- `svl_query_metrics_summary_vw`
+- `svl_s3query_summary_vw`
+
+## Run SQL Commands
 
 The tables that appear in the pg_catalog schema in any Redshift database are not available for direct selection from ThoughtSpot Embrace. This means that, in order to search the data included in these tables, they must first be made accessible to ThoughtSpot. The method to make this data accessible is to create a view from each of the relevant pg_catalog tables and then grant select permission to these views to the Redshift user that will be specified in the Embrace connection.
 
-**To create these views, please run the following SQL queries in Redshift. (Please replace “your_db_name” with the name of the database that you are using).**
+Run the required SQL commands in your cloud data warehouse to create the necessary views based on the required tables. The following is an example for the Redshift cloud data warehouse; you may need to modify the code for the SQL requirements of your specific cloud data warehouse.
 
-1. You get select and usage permissions to the below mentioned tables which are present in the dev.pg_catalog (< database name.schema name >)
-- pg_user
-- stl_query
-- stl_wlm_query
-- stv_wlm_service_class_config
-- svl_qlog
-- stl_alert_event_log
-- svv_table_info
-- stv_sessions
-- stl_load_errors
-- stv_node_storage_capacity
-- stl_ddltext
-- stl_plan_info
-- svl_query_metrics_summary
-- svl_s3query_summary
-
-2. Check the access to the above tables by running select query to make sure that the user is able to access the tables.  
-
-
-4. Create the views in the dev.public schema on top of tables which are present in the dev.pg_catalog schema.
-(OR)
-Ask the Redshift team to create the views in dev.public schema by using below create view statements and grant select & usage permissions to the same views.
-
-```sql
-create view dev.public.pg_user_vw as select * from dev.pg_catalog.pg_user;
+```
+{ create view dev.public.pg_user_vw as select * from dev.pg_catalog.pg_user;
 create view dev.public.stl_alert_event_log_vw as select * from dev.pg_catalog.stl_alert_event_log;
 create view dev.public.stl_ddltext_vw as select * from dev.pg_catalog.stl_ddltext;
 create view dev.public.stl_load_errors_vw as select * from dev.pg_catalog.stl_load_errors;
@@ -73,63 +83,25 @@ create view dev.public.stv_wlm_service_class_config_vw as select * from dev.pg_c
 create view dev.public.svl_qlog_vw as select * from dev.pg_catalog.svl_qlog;
 create view dev.public.svl_query_metrics_summary_vw as select * from dev.pg_catalog.svl_query_metrics_summary;
 create view dev.public.svl_s3query_summary_vw as select * from dev.pg_catalog.svl_s3query_summary;
-create view dev.public.svv_table_info_vw as select * from dev.pg_catalog.svv_table_info;  
-
+create view dev.public.svv_table_info_vw as select * from dev.pg_catalog.svv_table_info;
+]
 ```
 
-3. After the views have been created, make sure the Redshift user has the proper permission to query the views by executing the following SQL statements. **(Please replace “your_username” with your username and, if necessary, replace “public” with the name of the appropriate schema).**
+After the views have been created, make sure the Redshift user has the proper permission to query the views by executing the following SQL statements. **(Please replace “your_username” with your username and, if necessary, replace “public” with the name of the appropriate schema).**
 
 `
 grant usage on schema public to your_username;
 grant select on all tables in schema public to your_username;
 `
 
-## Connect Redshift and Thoughtspot 
-Log into your ThoughtSpot instance and create an Embrace connection to Redshift. You should have the following tables available in your ThoughtSpot account:
-- pg_user_vw
-- stl_alert_event_log_vw
-- stl_ddltext_vw
-- stl_load_errors_vw
-- stl_plan_info_vw
-- stl_query_vw
-- stl_wlm_query_vw
-- stv_node_storage_capacity_vw
-- stv_recents_vw
-- stv_sessions_vw
-- stv_wlm_service_class_config_vw
-- svl_qlog_vw
-- svl_query_metrics_summary_vw
-- svl_s3query_summary_vw
-- svv_table_info_vw
+# Redshift Storage & Performance SpotApp Implementation Steps
 
-## Thoughtspot Table Joins 
+Once you have downloaded the Zip file and have verified its contents, the implementation steps are as follows:
 
-To ensure the successful import of the worksheet and pinboards, joins need to be added to the tables in ThoughtSpot. Because these are views in Redshift and the joins cannot be “inherited” directly from the data warehouse, the joins must be added manually in the interface.
-
-Please add the following joins to the tables. (IMPORTANT: You will only have to do this once).
-
-| **Source Table** | **Joins** |
-| ----------- | ----------- |
-| pg_user_vw | None |
-| stl_alert_event_log_vw |  <img width="500" alt="Screen Shot 2022-03-31 at 2 05 25 PM" src="https://user-images.githubusercontent.com/102629468/161161164-f619ccb5-903d-493b-962d-ae49d048cf15.png">|
-| stl_ddltext_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 09 52 PM" src="https://user-images.githubusercontent.com/102629468/161161198-9151e011-0146-41cd-9c25-42d959f5f600.png"> |
-| stl_load_errors_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 10 02 PM" src="https://user-images.githubusercontent.com/102629468/161161218-ec8b4169-66b3-4a4e-b586-bf29427b6406.png"> |
-| stl_plan_info_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 10 11 PM" src="https://user-images.githubusercontent.com/102629468/161161235-8f79cb01-4211-442a-ad97-959dcaf9c96a.png"> |
-| stl_query_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 10 22 PM" src="https://user-images.githubusercontent.com/102629468/161161260-fee0a62b-1cee-442a-bee4-5fc19191d775.png"> |
-| stl_query_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 10 28 PM" src="https://user-images.githubusercontent.com/102629468/161161269-ed815212-420a-42bb-bcf3-c464c8091690.png"> |
-| stl_query_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 10 39 PM" src="https://user-images.githubusercontent.com/102629468/161161281-b50d7692-06f4-4133-a608-5576fa1274e4.png"> |
-| stl_query_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 10 45 PM" src="https://user-images.githubusercontent.com/102629468/161161297-6440fa1e-abee-4154-a0e4-b9dc5214f5e6.png"> |
-| stl_query_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 10 53 PM" src="https://user-images.githubusercontent.com/102629468/161161322-5b7b22c3-b5d6-4bf0-93c4-38ea7f3b518a.png"> |
-| stl_wlm_query_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 11 01 PM" src="https://user-images.githubusercontent.com/102629468/161161341-c3879d20-ac52-487e-b45f-ddde6b23df50.png"> |
-| stl_wlm_query_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 11 11 PM" src="https://user-images.githubusercontent.com/102629468/161161347-42d41083-51e2-424e-a187-ddc0dab74bea.png"> |
-| stv_node_storage_capacity_vw | None |
-| stv_recents_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 11 21 PM" src="https://user-images.githubusercontent.com/102629468/161161437-ab8b1bb2-11db-4acc-b38b-e0f29c3f9e72.png"> |
-| stv_sessions_vw | <img width="500" alt="Screen Shot 2022-03-31 at 2 11 28 PM" src="https://user-images.githubusercontent.com/102629468/161161447-5cebfffb-a27f-4c0e-ad4d-c9a8aca1a5b8.png"> |
-| stv_wlm_service_class_config_vw | None |
-| svl_qlog_vw | None |
-| svl_query_metrics_summary_vw | None |
-| svl_s3query_summary_vw | None |
-| svv_table_info_vw | None |
+2. Log into your ThoughtSpot instance and create an Embrace connection to all of the relevant views.
+4. Import the TML for the worksheets and verify that it has all been imported without any errors.
+5. Import the TML for the pinboard and verify that it has all been imported without any errors.
+6. You are ready to start searching your Redshift data!
 
 ### Import TML
  
@@ -150,6 +122,21 @@ Please add the following joins to the tables. (IMPORTANT: You will only have to 
  
 - Import the zipped file containing TML for the worksheets and verify that it has all been imported without any errors.
 - Import the zipped file for the liveboards and verify that it has all been imported without any errors.
+
+# Review Formula Values
+
+After you deploy the Redshift Performance and Consumption SpotApp, it is crucial to review the default formula values ThoughtSpot used in several formulas in the Amazon Redshift Clusters Worksheet. Since your values may differ from the default values used by ThoughtSpot, reviewing these values will ensure the SpotApp is as useful for your specific data as possible.
+
+## Formulas to Review in the Amazon Redshift Clusters Worksheet
+
+- **Instance Type**: By default, this is set to `dc2.large`. If necessary, replace this value with the node/instance type for your Redshift cluster and region.
+- **Price Per Node Per Hour (Currency)**: If necessary, replace this value with the value for your node type and region. Refer to "On-demand pricing" in the Redshift pricing documentation.
+- **Spectrum Price Per TB (Currency)**: If necessary, replace this value with the value for your region. Refer to "Amazon Redshift Spectrum pricing" in the Redshift pricing documentation.
+- **Concurrency Price per Second (Currency)**: If necessary, replace this value with the value for your region. Refer to "Concurrency Scaling Pricing" in the Redshift pricing documentation.
+
+### Note
+All currency values are in USD. If necessary, convert them to your currency.
+
 
 # Liveboard Screenshots 
 
