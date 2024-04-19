@@ -1,0 +1,51 @@
+SpotApp table;SpotApp columns;SpotApp column datatype;SpotApp column description;SpotApp mandatory column
+pg_user_vw;usename;VARCHAR;User name;No
+pg_user_vw;usesuper;BOOL;User is a superuser;No
+pg_user_vw;usesysid;INT32;This column is required to join the cdw tables;No
+stl_alert_event_log_vw;event;VARCHAR;Description of the alert event.;No
+stl_alert_event_log_vw;event_time;DATE_TIME;Time in UTC that the query started executing, with 6 digits of precision for fractional seconds. For example: 2009-06-12 11:29:19.131358.;No
+stl_alert_event_log_vw;pid;INT32;Process ID associated with the statement and slice. The same query might have multiple PIDs if it runs on multiple slices.;No
+stl_alert_event_log_vw;query;INT32;This column is required to join the cdw tables;No
+stl_alert_event_log_vw;solution;VARCHAR;Recommended solution.;No
+stl_ddltext_vw;pid;INT32;This column is required to join the cdw tables;No
+stl_load_errors_vw;colname;VARCHAR;Field with the error.;No
+stl_load_errors_vw;err_code;INT32;Error code.;No
+stl_load_errors_vw;err_reason;VARCHAR;Explanation for the error.;No
+stl_load_errors_vw;filename;VARCHAR;Complete path to the input file for the load.;No
+stl_load_errors_vw;line_number;INT64;Line number in the load file with the error. For COPY from JSON, the line number of the last line of the JSON object with the error.;No
+stl_load_errors_vw;query;INT32;This is to map the column query;No
+stl_load_errors_vw;session;INT32;Session ID for the session performing the load.;No
+stl_load_errors_vw;starttime;DATE_TIME;Start time in UTC for the load.;No
+stl_load_errors_vw;tbl;INT32;Table ID.;No
+stl_load_errors_vw;userid;INT32;This column is required to join the cdw tables;No
+stl_plan_info_vw;nodeid;INT32;This column is required to join the cdw tables;No
+stl_plan_info_vw;query;INT32;This column is required to join the cdw tables;No
+stl_query_vw;aborted;INT32;If a query was stopped by the system or canceled by the user, this column contains 1. If the query ran to completion (including returning results to the client), this column contains 0. If a client disconnects before receiving the results, the query will be marked as canceled (1), even if it completed successfully in the backend.;No
+stl_query_vw;database;VARCHAR;The name of the database the user was connected to when the query was issued.;No
+stl_query_vw;endtime;DATE_TIME;Time in UTC that the query finished executing, with 6 digits of precision for fractional seconds. For example: 2009-06-12 11:29:19.131358.;No
+stl_query_vw;pid;INT32;This column is required to join the cdw tables;No
+stl_query_vw;query;INT32;This column is required to join the cdw tables;No
+stl_query_vw;querytxt;VARCHAR;This is to map the column querytxt;No
+stl_query_vw;starttime;DATE_TIME;Time in UTC that the query started executing, with 6 digits of precision for fractional seconds. For example: 2009-06-12 11:29:19.131358.;No
+stl_query_vw;userid;INT32;This column is required to join the cdw tables;No
+stl_wlm_query_vw;query;INT32;This column is required to join the cdw tables;No
+stl_wlm_query_vw;service_class;INT32;This column is required to join the cdw tables;No
+stv_node_storage_capacity_vw;capacity;INT64;The total storage capacity provisioned for the node in 1 MB blocks. The capacity includes space that is reserved by Amazon Redshift on DS2 or DC2 node types for internal use. The capacity is larger than the nominal node capacity, which is the amount of node space available for user data.;No
+stv_node_storage_capacity_vw;node;INT32;The node number.;No
+stv_node_storage_capacity_vw;used;INT64;This is to map the column used;No
+stv_sessions_vw;db_name;VARCHAR;Name of the database associated with the session.;No
+stv_sessions_vw;process;INT32;Process ID for the session.;No
+stv_sessions_vw;starttime;DATE_TIME;This is to map the column starttime;No
+stv_sessions_vw;timeout_sec;INT32;The maximum time in seconds that a session remains inactive or idle before timing out. 0 indicates that no timeout is set.;No
+stv_sessions_vw;user_name;VARCHAR;This column is required to join the cdw tables;No
+stv_wlm_service_class_config_vw;name;VARCHAR;The name of the service class.;No
+stv_wlm_service_class_config_vw;service_class;INT32;This column is required to join the cdw tables;No
+svl_qlog_vw;elapsed;INT64;This is to map the column elapsed;No
+svl_qlog_vw;query;INT32;This column is required to join the cdw tables;No
+svl_query_metrics_summary_vw;query;INT32;This column is required to join the cdw tables;No
+svl_s3query_summary_vw;query;INT32;This column is required to join the cdw tables;No
+svv_table_info_vw;database;VARCHAR;Database name.;No
+svv_table_info_vw;pct_used;DOUBLE;Percent of available space that is used by the table.;No
+svv_table_info_vw;size;INT64;Size of the table, in 1 MB data blocks.;No
+svv_table_info_vw;table;VARCHAR;Table name.;No
+svv_table_info_vw;tbl_rows;DOUBLE;Total number of rows in the table. This value includes rows marked for deletion, but not yet vacuumed.;No
