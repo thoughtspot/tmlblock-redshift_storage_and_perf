@@ -7,9 +7,10 @@ The Redshift Performance and Consumption SpotApp mimics the Redshift data model.
 In every Redshift database, there is a schema called pg_catalog that includes system tables that store storage and performance data from the entire data warehouse. ThoughtSpot has selected the tables most meaningful for analyzing storage and performance trends and made this data easily searchable via ThoughtSpot. There is always room for customization to any template, but the DDL, Worksheets and Liveboard content that comprise this SpotApp definitely will provide a solid starting point for anyone who wants to explore and analyze their Redshift Storage & Performance data.
 
 # Artifacts 
-- **Amazon Redshift Management Dashboard_schema.csv**: TML template files for the SpotApp.
-- **Amazon Redshift TML Block.zip**:The following table describes the schema for the Redshift Performance and Consumption SpotApp.
-
+- **Amazon Redshift Management Dashboard_schema.csv**: The following table describes the schema for the Redshift Performance and Consumption SpotApp.
+TML template files for the SpotApp.
+- **Amazon Redshift TML Block.zip**: TML template files for the SpotApp.
+  
 # Prerequisites for Deploying the Redshift Performance and Consumption SpotApp
 
 Before you can deploy the Redshift Performance and Consumption SpotApp, you must complete the following prerequisites:
